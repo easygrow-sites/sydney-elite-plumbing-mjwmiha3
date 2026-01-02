@@ -1,24 +1,34 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { services, getService, getAllServiceSlugs } from '@/lib/services';
 import { locations, getLocation, getAllLocationSlugs } from '@/lib/locations';
+
+// Parse slug like "emergency-plumbing-in-bondi" into service and location
+function parseSlug(slug: string): { serviceSlug: string; locationSlug: string } | null {
+  const parts = slug.split('-in-');
+  if (parts.length !== 2) return null;
+  return { serviceSlug: parts[0], locationSlug: parts[1] };
+}
 
 export async function generateStaticParams() {
   const params = [];
   for (const serviceSlug of getAllServiceSlugs()) {
     for (const locationSlug of getAllLocationSlugs()) {
       params.push({
-        service: serviceSlug,
-        location: locationSlug,
+        slug: `${serviceSlug}-in-${locationSlug}`,
       });
     }
   }
   return params;
 }
 
-export async function generateMetadata({ params }: { params: { service: string; location: string } }): Promise<Metadata> {
-  const service = getService(params.service);
-  const location = getLocation(params.location);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const parsed = parseSlug(params.slug);
+  if (!parsed) return { title: 'Page Not Found' };
+
+  const service = getService(parsed.serviceSlug);
+  const location = getLocation(parsed.locationSlug);
 
   if (!service || !location) {
     return { title: 'Service Not Found' };
@@ -31,12 +41,15 @@ export async function generateMetadata({ params }: { params: { service: string; 
   };
 }
 
-export default function ServiceLocationPage({ params }: { params: { service: string; location: string } }) {
-  const service = getService(params.service);
-  const location = getLocation(params.location);
+export default function ServiceLocationPage({ params }: { params: { slug: string } }) {
+  const parsed = parseSlug(params.slug);
+  if (!parsed) notFound();
+
+  const service = getService(parsed.serviceSlug);
+  const location = getLocation(parsed.locationSlug);
 
   if (!service || !location) {
-    return <div>Service or location not found</div>;
+    notFound();
   }
 
   const relatedServices = services.filter(s => s.slug !== service.slug).slice(0, 4);
