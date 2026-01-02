@@ -1,7 +1,116 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { services, getService, getAllServiceSlugs } from '@/lib/services';
 import { locations } from '@/lib/locations';
+
+const serviceImages: Record<string, { hero: string; gallery: string[] }> = {
+  'emergency-plumbing': {
+    hero: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+    ]
+  },
+  'blocked-drains': {
+    hero: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
+    ]
+  },
+  'hot-water-systems': {
+    hero: 'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+    ]
+  },
+  'leak-detection': {
+    hero: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop',
+    ]
+  },
+  'pipe-relining': {
+    hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+    ]
+  },
+  'bathroom-renovations': {
+    hero: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=600&h=400&fit=crop',
+    ]
+  },
+  'kitchen-plumbing': {
+    hero: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    ]
+  },
+  'gas-fitting': {
+    hero: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+    ]
+  },
+  'toilet-repairs': {
+    hero: 'https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=600&h=400&fit=crop',
+    ]
+  },
+  'tap-repairs': {
+    hero: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+    ]
+  },
+  'stormwater-drainage': {
+    hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+    ]
+  },
+  'sewer-services': {
+    hero: 'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=1920&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+    ]
+  },
+};
+
+const defaultImages = {
+  hero: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80',
+  gallery: [
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop',
+  ]
+};
 
 export async function generateStaticParams() {
   return getAllServiceSlugs().map(slug => ({ service: slug }));
@@ -25,19 +134,38 @@ export default function ServicePage({ params }: { params: { service: string } })
     return <div>Service not found</div>;
   }
 
+  const images = serviceImages[service.slug] || defaultImages;
   const relatedServices = services.filter(s => s.slug !== service.slug).slice(0, 3);
   const featuredLocations = locations.slice(0, 12);
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Background Image */}
+      <section className="relative text-white py-24 min-h-[400px]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={images.hero}
+            alt={service.name}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/80"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center mb-4">
-            <span className="text-5xl mr-4">{service.icon}</span>
-            <h1 className="text-4xl md:text-5xl font-bold">{service.name} Sydney</h1>
+            <span className="text-5xl mr-4 drop-shadow-lg">{service.icon}</span>
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">{service.name} Sydney</h1>
           </div>
-          <p className="text-xl text-primary-100">Professional {service.name.toLowerCase()} services across Sydney | Available 24/7</p>
+          <p className="text-xl text-blue-100 max-w-2xl">Professional {service.name.toLowerCase()} services across Sydney | Available 24/7</p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a href="tel:1300PLUMBER" className="bg-orange-500 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-orange-600 transition shadow-xl">
+              Call 1300 PLUMBER
+            </a>
+            <Link href="/contact" className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition shadow-xl">
+              Get Free Quote
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -47,6 +175,15 @@ export default function ServicePage({ params }: { params: { service: string } })
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              {/* Image Gallery */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {images.gallery.map((img, idx) => (
+                  <div key={idx} className="relative h-40 rounded-lg overflow-hidden shadow-md">
+                    <Image src={img} alt={`${service.name} ${idx + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-300" />
+                  </div>
+                ))}
+              </div>
+
               <div className="prose prose-lg max-w-none">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Expert {service.name} Services</h2>
                 <p className="text-gray-600 mb-6">{service.description}</p>
@@ -54,6 +191,15 @@ export default function ServicePage({ params }: { params: { service: string } })
                 <p className="text-gray-600 mb-6">
                   At Sydney Elite Plumbing, we understand the importance of reliable {service.name.toLowerCase()} solutions. Our team of licensed, experienced plumbers has been serving Sydney homes and businesses for over 15 years, delivering quality workmanship and exceptional customer service on every job.
                 </p>
+
+                {/* Featured Image */}
+                <div className="relative h-64 rounded-lg overflow-hidden shadow-lg my-8">
+                  <Image src={images.gallery[0]} alt={service.name} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="font-semibold">Professional {service.name} Services</p>
+                  </div>
+                </div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Choose Us for {service.name}?</h3>
                 <ul className="space-y-3 mb-6">
@@ -174,6 +320,11 @@ export default function ServicePage({ params }: { params: { service: string } })
                     </li>
                   </ul>
                 </div>
+              </div>
+
+              {/* Sidebar Image */}
+              <div className="relative h-48 rounded-lg overflow-hidden shadow-lg mb-8">
+                <Image src={images.gallery[1]} alt="Professional plumber" fill className="object-cover" />
               </div>
 
               {/* Related Services */}
