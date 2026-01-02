@@ -4,69 +4,70 @@ import Image from 'next/image';
 import { services, getService, getAllServiceSlugs } from '@/lib/services';
 import { locations } from '@/lib/locations';
 
+// Professional close-up plumbing images - neutral, work-focused shots
 const serviceImages: Record<string, { hero: string; gallery: string[] }> = {
   'emergency-plumbing': {
-    hero: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&q=80',
+    hero: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1920&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
   'blocked-drains': {
     hero: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
   'hot-water-systems': {
-    hero: 'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=1920&q=80',
+    hero: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
     ]
   },
   'leak-detection': {
-    hero: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80',
+    hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
   'pipe-relining': {
     hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
   'bathroom-renovations': {
     hero: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
     ]
   },
   'kitchen-plumbing': {
     hero: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
     ]
   },
   'gas-fitting': {
     hero: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
     ]
   },
   'toilet-repairs': {
@@ -74,31 +75,31 @@ const serviceImages: Record<string, { hero: string; gallery: string[] }> = {
     gallery: [
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
     ]
   },
   'tap-repairs': {
-    hero: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80',
+    hero: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
     ]
   },
   'stormwater-drainage': {
     hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
   'sewer-services': {
-    hero: 'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=1920&q=80',
+    hero: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=400&fit=crop',
     ]
   },
 };

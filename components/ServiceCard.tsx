@@ -6,23 +6,24 @@ interface ServiceCardProps {
   service: Service;
 }
 
+// Australian-appropriate images - close-up work shots, modern fixtures, neutral professional images
 const serviceImages: Record<string, string> = {
-  'emergency-plumbing': 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=500&fit=crop',
-  'blocked-drains': 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800&h=500&fit=crop',
-  'hot-water-systems': 'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=800&h=500&fit=crop',
-  'leak-detection': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop',
-  'pipe-relining': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop',
-  'bathroom-renovations': 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=500&fit=crop',
-  'kitchen-plumbing': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop',
-  'gas-fitting': 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&h=500&fit=crop',
-  'toilet-repairs': 'https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=800&h=500&fit=crop',
-  'tap-repairs': 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800&h=500&fit=crop',
-  'stormwater-drainage': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop',
-  'sewer-services': 'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?w=800&h=500&fit=crop',
+  'emergency-plumbing': 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&h=500&fit=crop', // Pipe wrench close-up
+  'blocked-drains': 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800&h=500&fit=crop', // Drain work
+  'hot-water-systems': 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&h=500&fit=crop', // Water heater
+  'leak-detection': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop', // Pipe inspection
+  'pipe-relining': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop', // Pipe work
+  'bathroom-renovations': 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=500&fit=crop', // Modern bathroom
+  'kitchen-plumbing': 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop', // Modern kitchen
+  'gas-fitting': 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&h=500&fit=crop', // Gas appliance
+  'toilet-repairs': 'https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=800&h=500&fit=crop', // Modern toilet
+  'tap-repairs': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop', // Tap/faucet
+  'stormwater-drainage': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop', // Drainage
+  'sewer-services': 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop', // Sewer work
 };
 
 export default function ServiceCard({ service }: ServiceCardProps) {
-  const imageUrl = serviceImages[service.slug] || 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800&h=500&fit=crop';
+  const imageUrl = serviceImages[service.slug] || 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&h=500&fit=crop';
 
   return (
     <Link href={`/services/${service.slug}`} className="block bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden border border-gray-200 group">

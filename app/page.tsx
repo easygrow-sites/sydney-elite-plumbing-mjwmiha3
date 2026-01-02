@@ -14,8 +14,8 @@ export default function HomePage() {
       <section className="relative text-white py-32 min-h-[600px]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80"
-            alt="Professional plumber at work"
+            src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1920&q=80"
+            alt="Professional plumber working on pipes"
             fill
             className="object-cover"
             priority
@@ -45,11 +45,11 @@ export default function HomePage() {
       {/* Gallery Strip */}
       <section className="py-4 bg-gray-100">
         <div className="flex overflow-hidden gap-2">
-          <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop" alt="Plumbing work" width={400} height={250} className="object-cover rounded" />
-          <Image src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=400&h=250&fit=crop" alt="Pipe repair" width={400} height={250} className="object-cover rounded" />
-          <Image src="https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=400&h=250&fit=crop" alt="Modern bathroom" width={400} height={250} className="object-cover rounded" />
-          <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=250&fit=crop" alt="Kitchen plumbing" width={400} height={250} className="object-cover rounded" />
-          <Image src="https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=400&h=250&fit=crop" alt="Water heater" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=400&h=250&fit=crop" alt="Pipe wrench and tools" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=400&h=250&fit=crop" alt="Drain repair work" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=250&fit=crop" alt="Pipe inspection" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=250&fit=crop" alt="Hot water system" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=250&fit=crop" alt="Modern tap fixture" width={400} height={250} className="object-cover rounded" />
         </div>
       </section>
 
