@@ -4,7 +4,6 @@ const nextConfig = {
     domains: ['source.unsplash.com', 'images.unsplash.com'],
     unoptimized: true
   },
-  output: 'export',
   trailingSlash: true,
 }
 
