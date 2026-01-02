@@ -1,0 +1,76 @@
+{
+  "services": [
+    {
+      "name": "Emergency Plumbing",
+      "slug": "emergency-plumbing",
+      "description": "24/7 emergency plumbing services for urgent issues like burst pipes, blocked drains, gas leaks, and water heater failures. Fast response time guaranteed.",
+      "icon": "🚨"
+    },
+    {
+      "name": "Blocked Drains",
+      "slug": "blocked-drains",
+      "description": "Professional drain clearing and unblocking services using high-pressure water jetting and CCTV drain inspection technology.",
+      "icon": "🚿"
+    },
+    {
+      "name": "Hot Water Systems",
+      "slug": "hot-water-systems",
+      "description": "Installation, repair, and replacement of all hot water system types including electric, gas, solar, and heat pump systems.",
+      "icon": "♨️"
+    },
+    {
+      "name": "Leak Detection",
+      "slug": "leak-detection",
+      "description": "Advanced leak detection services using thermal imaging and acoustic equipment to find hidden water leaks in walls, floors, and underground.",
+      "icon": "💧"
+    },
+    {
+      "name": "Pipe Relining",
+      "slug": "pipe-relining",
+      "description": "Trenchless pipe repair technology that fixes damaged pipes without excavation. Cost-effective and minimally invasive solution.",
+      "icon": "🔧"
+    },
+    {
+      "name": "Bathroom Renovations",
+      "slug": "bathroom-renovations",
+      "description": "Complete bathroom renovation services including design, plumbing installation, fixture replacement, and waterproofing.",
+      "icon": "🛁"
+    },
+    {
+      "name": "Kitchen Plumbing",
+      "slug": "kitchen-plumbing",
+      "description": "Kitchen plumbing services including sink installation, dishwasher connection, garbage disposal, and tap repairs.",
+      "icon": "🍽️"
+    },
+    {
+      "name": "Gas Fitting",
+      "slug": "gas-fitting",
+      "description": "Licensed gas fitting services for installation, repair, and maintenance of gas appliances, lines, and systems.",
+      "icon": "🔥"
+    },
+    {
+      "name": "Toilet Repairs",
+      "slug": "toilet-repairs",
+      "description": "Expert toilet repair and replacement services including fixing leaks, blockages, cistern problems, and complete toilet installations.",
+      "icon": "🚽"
+    },
+    {
+      "name": "Tap Repairs",
+      "slug": "tap-repairs",
+      "description": "Professional tap and faucet repair services for leaking, dripping, or damaged taps in kitchens, bathrooms, and laundries.",
+      "icon": "🚰"
+    },
+    {
+      "name": "Stormwater Drainage",
+      "slug": "stormwater-drainage",
+      "description": "Stormwater drainage installation and repair services to prevent flooding and water damage to your property.",
+      "icon": "🌧️"
+    },
+    {
+      "name": "Sewer Services",
+      "slug": "sewer-services",
+      "description": "Complete sewer line inspection, repair, and replacement services using modern trenchless technology and CCTV inspection.",
+      "icon": "🔍"
+    }
+  ]
+}
