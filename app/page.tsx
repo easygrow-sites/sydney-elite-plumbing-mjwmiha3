@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { services } from '@/lib/services';
 import { locations } from '@/lib/locations';
 import ServiceCard from '@/components/ServiceCard';
@@ -9,25 +10,46 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Background Image */}
+      <section className="relative text-white py-32 min-h-[600px]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&q=80"
+            alt="Professional plumber at work"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/80"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
               Sydney's Most Trusted Plumbing Service
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-primary-100">
+            <p className="text-xl md:text-2xl mb-8 text-blue-100">
               24/7 Emergency Response | Licensed & Insured | Fast & Reliable
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:1300PLUMBER" className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition">
+              <a href="tel:1300PLUMBER" className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition shadow-xl">
                 Call Now: 1300 PLUMBER
               </a>
-              <Link href="/contact" className="bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-primary-800 transition border-2 border-white">
+              <Link href="/contact" className="bg-orange-500 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-orange-600 transition border-2 border-orange-400 shadow-xl">
                 Get Free Quote
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Gallery Strip */}
+      <section className="py-4 bg-gray-100">
+        <div className="flex overflow-hidden gap-2">
+          <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop" alt="Plumbing work" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=400&h=250&fit=crop" alt="Pipe repair" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1581092160607-ee67df9c8c04?w=400&h=250&fit=crop" alt="Modern bathroom" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=250&fit=crop" alt="Kitchen plumbing" width={400} height={250} className="object-cover rounded" />
+          <Image src="https://images.unsplash.com/photo-1613323593608-abc90fec84ff?w=400&h=250&fit=crop" alt="Water heater" width={400} height={250} className="object-cover rounded" />
         </div>
       </section>
 
